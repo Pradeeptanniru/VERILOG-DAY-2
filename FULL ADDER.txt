@@ -1,0 +1,27 @@
+//DESIGN CODE
+module halfadder(
+    input a,b,
+    output s,c
+    );
+    
+xor(s,a,b);
+and(c,a,b);
+endmodule
+
+
+//TEST BENCH
+module fulladder_tb;
+reg a;
+reg b;
+reg cin;
+wire s;
+wire cout;
+fulladder uut(.a(a),.b(b),.cin(cin),.s(s),.cout(cout));
+initial begin
+a=0;b=0;cin=0;#100;
+a=0;b=0;cin=1;#100;
+a=0;b=1;cin=1;#100;
+a=1;b=0;cin=1;#100;
+a=1;b=1;cin=1;#100;
+end
+endmodule

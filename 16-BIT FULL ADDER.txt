@@ -1,0 +1,29 @@
+//DESIGN CODE
+module bit16fulladder(
+    input [15:0] a,b,
+    input cin,
+    output [15:0] s,
+    output cout
+    );
+fourbitfulladder g1(.a(a[3:0]),.b(b[3:0]),.cin(cin),.s(s[3:0]),.cout(w1));
+fourbitfulladder g2(.a(a[7:4]),.b(b[7:4]),.cin(w1),.s(s[7:4]),.cout(w2));
+fourbitfulladder g3(.a(a[11:8]),.b(b[11:8]),.cin(w2),.s(s[11:8]),.cout(w3));
+fourbitfulladder g4(.a(a[15:12]),.b(b[15:12]),.cin(w3),.s(s[15:12]),.cout(cout));
+endmodule
+
+
+//TEST BENCH
+module bit16fulladder_tb;
+reg [15:0]a;
+reg [15:0]b;
+reg cin;
+wire [15:0]s;
+wire cout;
+bit16fulladder uut(.a(a),.b(b),.cin(cin),.s(s),.cout(cout));
+initial begin
+a=16'b0101010101010101;
+b=16'b1010101010101010;
+cin=1;
+#100;
+end
+endmodule
