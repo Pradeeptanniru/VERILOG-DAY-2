@@ -1,11 +1,11 @@
 //DESIGN CODE
-module halfadder(
-    input a,b,
-    output s,c
+module fulladder(
+    input a,b,cin,
+    output s,cout
     );
-    
-xor(s,a,b);
-and(c,a,b);
+halfadder h1(.a(a),.b(b),.s(w1),.c(w2));
+halfadder h2(.a(w1),.b(cin),.s(s),.c(w3));
+or(cout,w2,w3);
 endmodule
 
 
